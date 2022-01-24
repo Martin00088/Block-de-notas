@@ -10,19 +10,19 @@ function saveTask(e) {
     description
   };
 
-  if(localStorage.getItem('tasks') === null) {
+  if(localStorage.getItem('tasks') === null) {//se crea la tarea si esta vacio
     let tasks = [];
     tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  } else {
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    localStorage.setItem('tasks', JSON.stringify(tasks));//almacenarlo en Local-storage y luego convertirlo de un objeto a un string
+  } else {//se agrega la tarea si contiene tareas
+    let tasks = JSON.parse(localStorage.getItem('tasks'));//parse sirve para convertir el dato en un objeto y getItem para obtener el dato
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
   getTasks();
   document.getElementById('formTask').reset();
-  e.preventDefault();
+  e.preventDefault();//sirve para no perder la informacion al altualizar la pagina
 }
 
 function deleteTask(title) {
@@ -45,7 +45,7 @@ function getTasks() {
   for(let i = 0; i < tasks.length; i++) {
     let title = tasks[i].title;
     let description = tasks[i].description;
-
+//innerHTML sirve para agregar al html 
     tasksView.innerHTML += `<div class="card mb-3"> 
         <div class="card-body">
           <p>${title} - ${description}
